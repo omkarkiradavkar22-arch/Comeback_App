@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comeback - Daily Discipline Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#0d1117">
+
+<link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">DAILY DISCIPLINE TRACKER</p>
+        <h1>🔥 COMEBACK</h1>
+        <p class="subtitle">Build yourself. One day at a time.</p>
+      </div>
+      <div class="today-card">
+        <span>Today</span>
+        <strong id="todayDate">--</strong>
+      </div>
+    </header>
+
+    <main>
+      <section class="stats-grid">
+        <article class="stat-card">
+          <span>Today's Success</span>
+          <strong id="todayRate">0%</strong>
+          <small id="todaySummary">0 / 0 tasks completed</small>
+        </article>
+        <article class="stat-card">
+          <span>🔥 Current Streak</span>
+          <strong id="currentStreak">0</strong>
+          <small>perfect days</small>
+        </article>
+        <article class="stat-card">
+          <span>🏆 Best Streak</span>
+          <strong id="bestStreak">0</strong>
+          <small>perfect days</small>
+        </article>
+        <article class="stat-card">
+          <span>✅ Total Completed</span>
+          <strong id="totalCompleted">0</strong>
+          <small>all-time tasks</small>
+        </article>
+      </section>
+
+      <section class="panel progress-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">TODAY'S PROGRESS</p>
+            <h2 id="progressTitle">0% complete</h2>
+          </div>
+          <span class="status-pill" id="dayStatus">Start your day</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </section>
+
+      <section class="panel tasks-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">TODAY'S TASKS</p>
+            <h2>Win the day</h2>
+          </div>
+        </div>
+
+        <form id="taskForm" class="task-form" autocomplete="off">
+          <input id="taskInput" maxlength="80" placeholder="Add today's task..." required />
+          <button type="submit">+ Add Task</button>
+        </form>
+
+        <p class="today-only-note">🔒 Tasks can only be created and edited for today.</p>
+        <div id="taskList" class="task-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">🎯</div>
+          <h3>No tasks yet</h3>
+          <p>Add your first task and start the comeback.</p>
+        </div>
+      </section>
+
+      <section class="panel contribution-panel">
+        <div class="section-head chart-head">
+          <div>
+            <p class="eyebrow">YOUR COMEBACK</p>
+            <h2>Last 12 weeks</h2>
+          </div>
+          <div class="legend">
+            <span>Less</span>
+            <i class="level-0"></i><i class="level-1"></i><i class="level-2"></i><i class="level-3"></i><i class="level-4"></i>
+            <span>More</span>
+          </div>
+        </div>
+        <div class="chart-scroll">
+          <div id="contributionChart" class="contribution-chart"></div>
+        </div>
+        <p class="chart-note">Dark green = 100% tasks completed. Previous and future dates cannot be edited.</p>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">HISTORY</p>
+            <h2>Recent days</h2>
+          </div>
+          <strong id="overallRate" class="overall-rate">Overall: 0%</strong>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>COMEBACK • Offline • Stored only in this browser</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./service-worker.js")
+        .then(() => {
+          console.log("Service Worker Registered");
+        })
+        .catch(error => {
+          console.log("Service Worker Error:", error);
+        });
+    });
+  }
+</script>
+</body>
+</html>
