@@ -1,138 +1,533 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comeback - Daily Discipline Tracker</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
 
-<meta name="theme-color" content="#0d1117">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<link rel="apple-touch-icon" href="icon-192.png">
+  <title>COMEBACK - Daily Discipline Tracker</title>
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#070a0d">
+
+  <link
+    rel="manifest"
+    href="./manifest.json"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="./icon-192.png"
+  >
+
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
 </head>
+
+
 <body>
-  <div class="app-shell">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">DAILY DISCIPLINE TRACKER</p>
-        <h1>🔥 COMEBACK</h1>
-        <p class="subtitle">Build yourself. One day at a time.</p>
+
+  <div class="app">
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+
+    <header class="app-header">
+
+      <div class="brand">
+
+        <img
+          src="./icon-192.png"
+          alt="Comeback Logo"
+          class="logo"
+        >
+
+        <div class="brand-text">
+
+          <p class="small-title">
+            DAILY DISCIPLINE TRACKER
+          </p>
+
+          <h1>
+            COME<span>BACK</span>
+          </h1>
+
+          <p>
+            Build yourself. One day at a time.
+          </p>
+
+        </div>
+
       </div>
-      <div class="today-card">
-        <span>Today</span>
-        <strong id="todayDate">--</strong>
+
+
+      <div
+        id="todayDate"
+        class="today-date"
+      >
+        Today
       </div>
+
     </header>
 
-    <main>
-      <section class="stats-grid">
-        <article class="stat-card">
-          <span>Today's Success</span>
-          <strong id="todayRate">0%</strong>
-          <small id="todaySummary">0 / 0 tasks completed</small>
-        </article>
-        <article class="stat-card">
-          <span>🔥 Current Streak</span>
-          <strong id="currentStreak">0</strong>
-          <small>perfect days</small>
-        </article>
-        <article class="stat-card">
-          <span>🏆 Best Streak</span>
-          <strong id="bestStreak">0</strong>
-          <small>perfect days</small>
-        </article>
-        <article class="stat-card">
-          <span>✅ Total Completed</span>
-          <strong id="totalCompleted">0</strong>
-          <small>all-time tasks</small>
-        </article>
-      </section>
 
-      <section class="panel progress-panel">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">TODAY'S PROGRESS</p>
-            <h2 id="progressTitle">0% complete</h2>
-          </div>
-          <span class="status-pill" id="dayStatus">Start your day</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-      </section>
 
-      <section class="panel tasks-panel">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">TODAY'S TASKS</p>
-            <h2>Win the day</h2>
-          </div>
+    <!-- ======================================
+         STATS
+    ======================================= -->
+
+    <section class="stats-grid">
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          Today's Success
+        </span>
+
+        <strong
+          id="todayRate"
+          class="stat-value green"
+        >
+          0%
+        </strong>
+
+        <span
+          id="todaySummary"
+          class="stat-subtitle"
+        >
+          0 / 0 completed
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          Current Streak
+        </span>
+
+        <strong class="stat-value">
+          🔥
+          <span id="currentStreak">
+            0
+          </span>
+        </strong>
+
+        <span class="stat-subtitle">
+          Perfect days
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          Best Streak
+        </span>
+
+        <strong class="stat-value">
+          🏆
+          <span id="bestStreak">
+            0
+          </span>
+        </strong>
+
+        <span class="stat-subtitle">
+          Personal best
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <span class="stat-label">
+          Tasks Completed
+        </span>
+
+        <strong
+          id="totalCompleted"
+          class="stat-value"
+        >
+          0
+        </strong>
+
+        <span class="stat-subtitle">
+          All time
+        </span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         TODAY PROGRESS
+    ======================================= -->
+
+    <section class="card">
+
+      <div class="progress-header">
+
+        <div>
+
+          <p class="section-label">
+            TODAY
+          </p>
+
+          <h2
+            id="progressTitle"
+          >
+            0% complete
+          </h2>
+
         </div>
 
-        <form id="taskForm" class="task-form" autocomplete="off">
-          <input id="taskInput" maxlength="80" placeholder="Add today's task..." required />
-          <button type="submit">+ Add Task</button>
-        </form>
 
-        <p class="today-only-note">🔒 Tasks can only be created and edited for today.</p>
-        <div id="taskList" class="task-list"></div>
-        <div id="emptyState" class="empty-state">
-          <div class="empty-icon">🎯</div>
-          <h3>No tasks yet</h3>
-          <p>Add your first task and start the comeback.</p>
-        </div>
-      </section>
+        <span
+          id="dayStatus"
+          class="day-status"
+        >
+          No excuses
+        </span>
 
-      <section class="panel contribution-panel">
-        <div class="section-head chart-head">
-          <div>
-            <p class="eyebrow">YOUR COMEBACK</p>
-            <h2>Last 12 weeks</h2>
-          </div>
-          <div class="legend">
-            <span>Less</span>
-            <i class="level-0"></i><i class="level-1"></i><i class="level-2"></i><i class="level-3"></i><i class="level-4"></i>
-            <span>More</span>
-          </div>
-        </div>
-        <div class="chart-scroll">
-          <div id="contributionChart" class="contribution-chart"></div>
-        </div>
-        <p class="chart-note">Dark green = 100% tasks completed. Previous and future dates cannot be edited.</p>
-      </section>
+      </div>
 
-      <section class="panel history-panel">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">HISTORY</p>
-            <h2>Recent days</h2>
-          </div>
-          <strong id="overallRate" class="overall-rate">Overall: 0%</strong>
-        </div>
-        <div id="historyList" class="history-list"></div>
-      </section>
-    </main>
 
-    <footer>
-      <p>COMEBACK • Offline • Stored only in this browser</p>
+      <div class="progress-bar">
+
+        <div
+          id="progressFill"
+          class="progress-fill"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         TASK PLAN
+    ======================================= -->
+
+    <section class="card">
+
+      <div class="task-plan-header">
+
+        <div>
+
+          <p class="section-label">
+            YOUR ROUTINE
+          </p>
+
+          <h2>
+            Task Plan
+          </h2>
+
+        </div>
+
+
+        <span class="strict-badge">
+          🔒 STRICT MODE
+        </span>
+
+      </div>
+
+
+      <p class="plan-description">
+        Add a commitment and select the days when it must be completed.
+        Unselected days are rest days for that task.
+      </p>
+
+
+      <input
+        type="text"
+        id="planTaskName"
+        class="plan-input"
+        placeholder="Add commitment... e.g. Workout"
+        maxlength="80"
+        autocomplete="off"
+      >
+
+
+      <div class="day-selector">
+
+        <label>
+          <input
+            type="checkbox"
+            value="1"
+          >
+          <span>Mon</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            value="2"
+          >
+          <span>Tue</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            value="3"
+          >
+          <span>Wed</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            value="4"
+          >
+          <span>Thu</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            value="5"
+          >
+          <span>Fri</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            value="6"
+          >
+          <span>Sat</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            value="0"
+          >
+          <span>Sun</span>
+        </label>
+
+      </div>
+
+
+      <button
+        id="addPlanBtn"
+        type="button"
+      >
+        + Add Commitment
+      </button>
+
+
+      <div class="strict-warning">
+        ⚠️ Editing or removing an existing commitment breaks your current streak.
+        Today's already committed tasks can never be removed.
+      </div>
+
+
+      <div id="taskPlanList"></div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         TODAY'S COMMITMENTS
+    ======================================= -->
+
+    <section class="card">
+
+      <div class="tasks-header">
+
+        <div>
+
+          <p class="section-label">
+            TODAY
+          </p>
+
+          <h2>
+            Today's Commitments
+          </h2>
+
+        </div>
+
+
+        <span class="locked-badge">
+          🔒 Locked for today
+        </span>
+
+      </div>
+
+
+      <div id="taskList"></div>
+
+
+      <div
+        id="emptyState"
+        class="empty-state hidden"
+      >
+        😴 Rest Day — No scheduled commitments today.
+      </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         CONTRIBUTION CHART
+    ======================================= -->
+
+    <section class="card">
+
+      <div class="chart-title-row">
+
+        <div>
+
+          <p class="section-label">
+            CONSISTENCY
+          </p>
+
+          <h2>
+            Your Comeback
+          </h2>
+
+        </div>
+
+
+        <strong
+          id="overallRate"
+          class="overall-rate"
+        >
+          Overall: 0%
+        </strong>
+
+      </div>
+
+
+      <div class="chart-wrapper">
+
+        <div id="contributionChart"></div>
+
+      </div>
+
+
+      <div class="chart-legend">
+
+        <span>Less</span>
+
+        <span class="legend-cell level-0"></span>
+        <span class="legend-cell level-1"></span>
+        <span class="legend-cell level-2"></span>
+        <span class="legend-cell level-3"></span>
+        <span class="legend-cell level-4"></span>
+
+        <span>More</span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         HISTORY
+    ======================================= -->
+
+    <section class="card">
+
+      <p class="section-label">
+        HISTORY
+      </p>
+
+      <h2>
+        Recent Days
+      </h2>
+
+
+      <div id="historyList"></div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+
+    <footer class="app-footer">
+
+      <p>
+        <strong>COMEBACK</strong>
+        • Offline
+        • Stored only in this browser
+      </p>
+
+      <p>
+        Better You. Everyday. 🔥
+      </p>
+
     </footer>
+
   </div>
 
-  <script src="script.js"></script>
+
+
+  <!-- ======================================
+       JAVASCRIPT
+  ======================================= -->
+
+  <script src="./script.js"></script>
+
+
+  <!-- SERVICE WORKER -->
+
   <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("./service-worker.js")
-        .then(() => {
-          console.log("Service Worker Registered");
-        })
-        .catch(error => {
-          console.log("Service Worker Error:", error);
-        });
-    });
-  }
-</script>
+
+    if ("serviceWorker" in navigator) {
+
+      window.addEventListener(
+        "load",
+        () => {
+
+          navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+              console.log(
+                "Service Worker Registered"
+              );
+            })
+            .catch(error => {
+              console.error(
+                "Service Worker Error:",
+                error
+              );
+            });
+
+        }
+      );
+
+    }
+
+  </script>
+
 </body>
+
 </html>
